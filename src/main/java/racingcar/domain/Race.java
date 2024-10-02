@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Race {
     private final List<Car> cars;
-    public static final int MIN_CAN_ADVANCE_NUMBER = 4;
+
 
     public Race(String[] carNames) {
         this.cars = createCars(carNames);
@@ -26,13 +26,10 @@ public class Race {
     }
 
     public int getMaxPosition() {
-        int maxPosition = 0;
-        for (Car car : cars) {
-            if (car.getPosition() > maxPosition) {
-                maxPosition = car.getPosition();
-            }
-        }
-        return maxPosition;
+        return cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElse(0);
     }
 
     public List<String> getWinners() {

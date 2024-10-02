@@ -10,6 +10,7 @@ import java.util.List;
 public class RaceService {
     private final Race race;
     private final OutputView outputView = new OutputView();
+    public static final int MIN_CAN_ADVANCE_NUMBER = 4;
 
     public RaceService(String[] carNames) {
         this.race = new Race(carNames);
@@ -32,7 +33,7 @@ public class RaceService {
     }
 
     public boolean canAdvance() {
-        return Randoms.pickNumberInRange(0, 9) >= Race.MIN_CAN_ADVANCE_NUMBER;
+        return Randoms.pickNumberInRange(0, 9) >= MIN_CAN_ADVANCE_NUMBER;
     }
 
     public List<String> getWinners() {
